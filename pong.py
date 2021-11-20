@@ -4,7 +4,7 @@ pygame.init()
 
 # set up main variables
 clock = pygame.time.Clock() 
-speed = 30  # in frames per second
+#speed = 30  # in frames per second
 display_width = 500
 display_height = 300
 
@@ -43,8 +43,10 @@ def hit_sides():
 
 def hit_paddle():
     global play_score # import the global play_score variable
+    global speed # and the speed variable
     if x - radius <= paddle_x + paddle_width and y > paddle_y and y < paddle_y + paddle_height:
         play_score += 100 # score goes up by 100 every time the paddle hits the ball 
+        speed += 5 # and a bit faster!
         return True
     return False
 
@@ -79,9 +81,11 @@ def game_over():
 
 display = pygame.display.set_mode((display_width, display_height))
 
-pygame.display.set_caption("Pong!")
+#set initial speed to slow, this will increase if successful
+speed = 10
 
 #welcome screen
+pygame.display.set_caption("Pong!")
 display.fill((0,0,0)) 
 welcome_screen = pygame.font.Font(None,30)
 welcome = welcome_screen.render("Welcome to PONG!", True, (255,255,255))
